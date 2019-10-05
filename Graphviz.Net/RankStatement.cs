@@ -23,9 +23,9 @@ namespace Graphviz.Net
         /// </summary>
         public bool WithLines { get; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append("{ rank=same; ");
+            gb.Append("{ rank=same; ");
             var isFirst = true;
             foreach (var node in Nodes)
             {
@@ -39,22 +39,22 @@ namespace Graphviz.Net
                     {
                         if (_Graph is DiGraph)
                         {
-                            sb.Append(" -> ");
+                            gb.Append(" -> ");
                         }
                         else
                         {
-                            sb.Append(" -- ");
+                            gb.Append(" -- ");
                         }
                     }
                     else
                     {
-                        sb.Append("; ");
+                        gb.Append("; ");
                     }
                 }
-                sb.Append(node.Id);
+                gb.Append(node.Id);
             }
-            sb.Append('}');
-            sb.AppendLine();
+            gb.Append('}');
+            gb.AppendLine();
         }
 
         void IGraphAppendNotifier.AppendToGraph(IGraph graph)

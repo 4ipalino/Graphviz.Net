@@ -26,29 +26,29 @@ namespace Graphviz.Net
         public Port FromPort { get; }
         public Port TargetPort { get; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append(FromNode.Id);
+            gb.Append(FromNode.Id);
             if (FromPort != null)
             {
-                FromPort.WriteText(sb);
+                FromPort.WriteText(gb);
             }
 
             if (_Graph is DiGraph)
             {
-                sb.Append("->");
+                gb.Append("->");
             }
             else
             {
-                sb.Append("--");
+                gb.Append("--");
             }
-            sb.Append(TargetNode.Id);
+            gb.Append(TargetNode.Id);
             if (TargetPort != null)
             {
-                TargetPort.WriteText(sb);
+                TargetPort.WriteText(gb);
             }
 
-            sb.Append('[');
+            gb.Append('[');
 
             if (Attributes != null)
             {
@@ -57,20 +57,20 @@ namespace Graphviz.Net
                 {
                     if (!isFirstAttribute)
                     {
-                        sb.Append(';');
+                        gb.Append(';');
                     }
                     else
                     {
                         isFirstAttribute = false;
                     }
-                    attribute.WriteText(sb);
+                    attribute.WriteText(gb);
                 }
             }
             else
             {
             }
-            sb.Append(']');
-            sb.AppendLine();
+            gb.Append(']');
+            gb.AppendLine();
         }
 
         void IGraphAppendNotifier.AppendToGraph(IGraph graph)

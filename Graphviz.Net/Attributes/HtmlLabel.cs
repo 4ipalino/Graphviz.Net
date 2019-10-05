@@ -18,18 +18,17 @@ namespace Graphviz.Net.Attributes
 
         public HtmlLabelText Text { get; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append('<');
+            gb.Append('<');
             if (Text != null)
             {
                 foreach (var textItem in Text.TextItems)
                 {
-                    sb.Append(textItem.Text);
+                    gb.Append(textItem.Text);
                 }
             }
-            sb.Append('>');
-            sb.AppendLine();
+            gb.Append('>');
         }
     }
 }

@@ -24,17 +24,19 @@ namespace Graphviz.Net
             _Statements.Add(statement);
         }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append("subgraph ");
-            sb.Append(Id);
-            sb.AppendLine(" {");
+            gb.Append("subgraph ");
+            gb.Append(Id);
+            gb.AppendLine(" {");
+            gb.IncreaseIndention();
             foreach (var statement in Statements)
             {
-                statement.WriteText(sb);
+                statement.WriteText(gb);
             }
 
-            sb.AppendLine("}");
+            gb.DecreaseIndention();
+            gb.AppendLine("}");
         }
     }
 

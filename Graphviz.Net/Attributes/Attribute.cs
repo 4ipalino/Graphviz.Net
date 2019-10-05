@@ -12,13 +12,13 @@ namespace Graphviz.Net.Attributes
 
         public virtual string Value { get; protected set; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append(Id);
-            sb.Append("=");
-            //sb.Append('"');
-            sb.Append(Value);
-            //sb.Append('"');
+            gb.Append(Id);
+            gb.Append("=");
+            //gb.Append('"');
+            gb.Append(Value);
+            //gb.Append('"');
         }
     }
 

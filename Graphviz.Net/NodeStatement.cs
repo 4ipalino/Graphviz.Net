@@ -20,14 +20,14 @@ namespace Graphviz.Net
 
         public IEnumerable<IAttribute> Attributes { get; set; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append(Id);
+            gb.Append(Id);
             if (Port != null)
             {
-                Port.WriteText(sb);
+                Port.WriteText(gb);
             }
-            sb.Append('[');
+            gb.Append('[');
 
             if (Attributes != null)
             {
@@ -36,17 +36,17 @@ namespace Graphviz.Net
                 {
                     if (!isFirstAttribute)
                     {
-                        sb.Append(';');
+                        gb.Append(';');
                     }
                     else
                     {
                         isFirstAttribute = false;
                     }
-                    attribute.WriteText(sb);
+                    attribute.WriteText(gb);
                 }
             }
-            sb.Append(']');
-            sb.AppendLine();
+            gb.Append(']');
+            gb.AppendLine();
         }
     }
 

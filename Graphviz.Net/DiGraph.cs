@@ -4,21 +4,21 @@ namespace Graphviz.Net
 {
     public class DiGraph : GraphBase
     {
-        public override void WriteText(StringBuilder sb)
+        public override void WriteText(IGraphvizBuilder gb)
         {
             if (IsStrict)
             {
-                sb.Append("strict ");
+                gb.Append("strict ");
             }
-            sb.Append("digraph ");
-            sb.Append(Id);
-            sb.AppendLine(" {");
+            gb.Append("digraph ");
+            gb.Append(Id);
+            gb.AppendLine(" {");
             foreach (var statement in Statements)
             {
-                statement.WriteText(sb);
+                statement.WriteText(gb);
             }
 
-            sb.AppendLine("}");
+            gb.AppendLine("}");
         }
     }
 }

@@ -33,11 +33,11 @@ namespace Graphviz.Net
 
         public void Save(string file)
         {
-            var sb = new StringBuilder();
-            WriteText(sb);
-            File.WriteAllText(file, sb.ToString());
+            var gb = new GraphvizBuilder();
+            WriteText(gb);
+            File.WriteAllText(file, gb.ToString());
         }
 
-        public abstract void WriteText(StringBuilder sb);
+        public abstract void WriteText(IGraphvizBuilder gb);
     }
 }

@@ -19,9 +19,9 @@ namespace Graphviz.Net.Attributes
 
         public LabelAttribute(HtmlLabel htmlLabel)
         {
-            var sb = new StringBuilder();
-            htmlLabel.WriteText(sb);
-            Value = sb.ToString();
+            var gb = new GraphvizBuilder();
+            htmlLabel.WriteText(gb);
+            Value = gb.ToString();
         }
 
         public override string Id => "label";

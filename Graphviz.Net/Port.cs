@@ -25,17 +25,17 @@ namespace Graphviz.Net
 
         public IEnumerable<Compass> Compasses { get; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
             if (!string.IsNullOrEmpty(Id))
             {
-                sb.Append(':');
-                sb.Append(Id);
+                gb.Append(':');
+                gb.Append(Id);
             }
             foreach (var compass in Compasses)
             {
-                sb.Append(':');
-                sb.Append(string.Concat(Regex.Matches(compass.ToString(), "[A-Z]").OfType<Match>().Select(match => match.Value)).ToLowerInvariant());
+                gb.Append(':');
+                gb.Append(string.Concat(Regex.Matches(compass.ToString(), "[A-Z]").OfType<Match>().Select(match => match.Value)).ToLowerInvariant());
             }
         }
     }

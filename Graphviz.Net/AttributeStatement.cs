@@ -18,12 +18,12 @@ namespace Graphviz.Net
         public AttributeType Type { get; }
         public IEnumerable<IAttribute> Attributes { get; }
 
-        public void WriteText(StringBuilder sb)
+        public void WriteText(IGraphvizBuilder gb)
         {
             if (Type != AttributeType.None)
             {
-                sb.Append(Type.ToString().ToLower());
-                sb.Append('[');
+                gb.Append(Type.ToString().ToLower());
+                gb.Append('[');
             }
 
             if (Attributes != null)
@@ -33,20 +33,20 @@ namespace Graphviz.Net
                 {
                     if (!isFirstAttribute)
                     {
-                        sb.Append(';');
+                        gb.Append(';');
                     }
                     else
                     {
                         isFirstAttribute = false;
                     }
-                    attribute.WriteText(sb);
+                    attribute.WriteText(gb);
                 }
             }
             if (Type != AttributeType.None)
             {
-                sb.Append(']');
+                gb.Append(']');
             }
-            sb.AppendLine();
+            gb.AppendLine();
         }
     }
 

@@ -6,17 +6,18 @@ namespace Graphviz.Net
     {
         public override bool IsStrict => true;
 
-        public override void WriteText(StringBuilder sb)
+        public override void WriteText(IGraphvizBuilder gb)
         {
-            sb.Append("strict graph ");
-            sb.Append(Id);
-            sb.AppendLine(" {");
+            gb.Append("strict graph ");
+            gb.Append(Id);
+            gb.AppendLine(" {");
+            gb.IncreaseIndention();
             foreach (var statement in Statements)
             {
-                statement.WriteText(sb);
+                statement.WriteText(gb);
             }
-
-            sb.AppendLine("}");
+            gb.DecreaseIndention();
+            gb.AppendLine("}");
         }
     }
 }
