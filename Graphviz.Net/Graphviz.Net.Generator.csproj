@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/4ipalino/Graphviz.Net</RepositoryUrl>
     <NeutralLanguage />
     <Copyright></Copyright>
+    <PackageIconUrl>https://github.com/4ipalino/Graphviz.Net/blob/master/Icon.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
