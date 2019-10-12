@@ -7,6 +7,11 @@
     <Authors>Andreas Hahn</Authors>
     <Company />
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/4ipalino/Graphviz.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/4ipalino/Graphviz.Net</RepositoryUrl>
+    <NeutralLanguage />
+    <Copyright></Copyright>
   </PropertyGroup>
 
   <ItemGroup>
