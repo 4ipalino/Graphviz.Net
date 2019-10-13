@@ -17,7 +17,7 @@ Install from Package Manager
 
 ### Simple undirected Graph
 
-<img style="float: right;" src="Graphviz.Net.Generator.Demo/images/simplegraph1.png">
+<img style="float: right;" src="Graphviz.Net.Generator.Demo/images/simpleGraph1.png">
 
 ```csharp
 var graph = new Graph();
@@ -30,7 +30,7 @@ graph.Save("simpleGraph1.gv");
 ### Simple directed Graph
 
 
-<img style="float: right;" src="Graphviz.Net.Generator.Demo/images/simpledigraph1.png">
+<img style="float: right;" src="Graphviz.Net.Generator.Demo/images/simpleDiGraph1.png">
 
 ```csharp
 var digraph = new DiGraph();
