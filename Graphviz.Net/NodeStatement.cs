@@ -1,24 +1,39 @@
 ﻿using Graphviz.Net.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Graphviz.Net
+namespace Graphviz.Net.Generator
 {
     #region NodeStatement
 
     public class NodeStatement : IStatement
     {
-        public NodeStatement(string id)
+        private List<IAttribute> _Attributes = new List<IAttribute>();
+
+        public NodeStatement(string id, IEnumerable<IAttribute> attributes = null)
         {
+            if (!id.IsValidId())
+            {
+                throw new ArgumentOutOfRangeException(nameof(id), $"Id \"{id}\" is not valid. More Information about valid Id´s: https://www.graphviz.org/doc/info/lang.html");
+            }
+
             Id = id;
+            if (attributes != null)
+            {
+                _Attributes.AddRange(attributes);
+            }
+        }
+
+        public NodeStatement(string id, params IAttribute[] attributes) : this(id, attributes.ToList())
+        {
         }
 
         public string Id { get; }
 
         public IPort Port { get; set; }
 
-        public IEnumerable<IAttribute> Attributes { get; set; }
+        public IEnumerable<IAttribute> Attributes => _Attributes;
 
         public void WriteText(IGraphvizBuilder gb)
         {
@@ -47,6 +62,12 @@ namespace Graphviz.Net
             }
             gb.Append(']');
             gb.AppendLine();
+        }
+
+        public NodeStatement WithAttribute(IAttribute attribute)
+        {
+            _Attributes.Add(attribute);
+            return this;
         }
     }
 

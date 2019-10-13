@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graphviz.Net.Generator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
