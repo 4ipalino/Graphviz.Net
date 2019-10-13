@@ -1,27 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Graphviz.Net
+namespace Graphviz.Net.Generator
 {
     #region RankStatement
 
     public class RankStatement : IStatement, IGraphAppendNotifier
     {
+        private readonly List<NodeStatement> _Nodes = new List<NodeStatement>();
+        private readonly IEnumerable<string> _NodeIds;
         private IGraph _Graph;
 
-        public RankStatement(IEnumerable<NodeStatement> nodes, bool withLines)
+        public RankStatement(IEnumerable<NodeStatement> nodes, bool withEdges)
         {
-            Nodes = nodes;
-            WithLines = withLines;
+            _Nodes.AddRange(nodes);
+            WithEdges = withEdges;
         }
 
-        public IEnumerable<NodeStatement> Nodes { get; }
+        public RankStatement(IEnumerable<string> nodeIds, bool withEdges)
+        {
+            _NodeIds = nodeIds;
+            WithEdges = withEdges;
+        }
+
+        public IEnumerable<NodeStatement> Nodes => _Nodes;
 
         /// <summary>
         /// If True the Nodes are Connected
         /// </summary>
-        public bool WithLines { get; }
+        public bool WithEdges { get; }
 
         public void WriteText(IGraphvizBuilder gb)
         {
@@ -35,7 +42,7 @@ namespace Graphviz.Net
                 }
                 else
                 {
-                    if (WithLines)
+                    if (WithEdges)
                     {
                         if (_Graph is DiGraph)
                         {
@@ -60,6 +67,10 @@ namespace Graphviz.Net
         void IGraphAppendNotifier.AppendToGraph(IGraph graph)
         {
             _Graph = graph;
+            if (_NodeIds != null)
+            {
+                _Nodes.AddRange(_NodeIds.Select(x => _Graph.GetNode(x)));
+            }
         }
     }
 

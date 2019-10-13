@@ -15,6 +15,12 @@ namespace Graphviz.Net
             Attributes = attributes;
         }
 
+        public AttributeStatement(AttributeType type, params IAttribute[] attributes)
+        {
+            Type = type;
+            Attributes = attributes;
+        }
+
         public AttributeType Type { get; }
         public IEnumerable<IAttribute> Attributes { get; }
 

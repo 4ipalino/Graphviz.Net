@@ -1,4 +1,6 @@
-﻿namespace Graphviz.Net
+﻿using Graphviz.Net.Generator;
+
+namespace Graphviz.Net
 {
     public interface IGraph : IGraphBase
     {

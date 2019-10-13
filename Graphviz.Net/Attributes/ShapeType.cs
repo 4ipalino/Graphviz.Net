@@ -6,6 +6,7 @@
     {
         None,
         Box,
+        Oval,
         Polygon,
         Ellipse,
         Diamond,
